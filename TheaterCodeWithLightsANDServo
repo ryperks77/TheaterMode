@@ -21,7 +21,7 @@ void setup()
   pinMode(inPin, INPUT);
   pinMode(outPin, OUTPUT);
 blinds.attach(9); //attaches servo to pin 9
-blinds.write(90); 
+blinds.write(0); 
 }
   
 
@@ -34,14 +34,13 @@ void loop()
   // to ignore any noise on the circuit, toggle the output pin and remember
   // the time
   if (reading == HIGH && previous == LOW && millis() - time > debounce) {
-    if (state == HIGH)
+    if (state == HIGH){
       state = LOW;
-    else 
+      blinds.write(180);
+    }else {
       state = HIGH;
         blinds.write(0);
-        delay(TURN_TIME);
-       blinds.write(180);
-      
+    }
        
   
 
